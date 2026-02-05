@@ -158,6 +158,44 @@ texture = ExtResource("2_gl6un")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_j5yw3")
 
+[sub_resource type="Animation" id="Animation_j5yw3"]
+resource_name = "Move"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(25, 19), Vector2(290, 19)]
+}
+
+[sub_resource type="Animation" id="Animation_kldst"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(25, 19)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2bpf"]
+_data = {
+&"Move": SubResource("Animation_j5yw3"),
+&"RESET": SubResource("Animation_kldst")
+}
+
 [node name="Game" type="Node2D" unique_id=366496392]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=391710075]
@@ -175,3 +213,10 @@ position_smoothing_enabled = true
 
 [node name="Platform" parent="." unique_id=1689342597 instance=ExtResource("3_j5yw3")]
 position = Vector2(156, 70)
+
+[node name="MovingPlatform" parent="." unique_id=922448459 instance=ExtResource("3_j5yw3")]
+position = Vector2(25, 19)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform" unique_id=792044903]
+libraries/ = SubResource("AnimationLibrary_b2bpf")
+autoplay = &"Move"
