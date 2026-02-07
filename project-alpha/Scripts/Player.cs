@@ -1,40 +1,93 @@
 using Godot;
-using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 130.0f;
-	public const float JumpVelocity = -300.0f;
+    [Export]
+    public float Speed = 130.0f;
+    [Export]
+    public float JumpVelocity = -300.0f;
 
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 velocity = Velocity;
+    private AnimatedSprite2D animatedSprite = null;
 
-		// Add the gravity.
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
-		}
+    private string JumpKeyName = "Jump";
+    private string MoveLeftKeyName = "MoveLeft";
+    private string MoveRightKeyName = "MoveRight";
+    private string IdleAnimationName = "Idle";
+    private string RunAnimationName = "Run";
+    private string JumpAnimationName = "Jump";
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
-		}
+    public override void _Ready()
+    {
+        animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
+    }
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
+    public override void _PhysicsProcess(double delta)
+    {
+        float moveInput = Input.GetAxis(MoveLeftKeyName, MoveRightKeyName);
+        UpdateAnimation(moveInput);
+        UpdateMovement(moveInput, delta);
+        MoveAndSlide();
+    }
 
-		Velocity = velocity;
-		MoveAndSlide();
-	}
+    private void UpdateAnimation(float moveInput)
+    {
+        if (animatedSprite == null)
+        {
+            return;
+        }
+
+        if (moveInput > 0.0f)
+        {
+            animatedSprite.FlipH = false;
+        }
+
+        if (moveInput < 0.0f)
+        {
+            animatedSprite.FlipH = true;
+        }
+
+        if (IsOnFloor())
+        {
+            GD.Print("IsOnFloor");
+            if (Mathf.IsZeroApprox(moveInput))
+            {
+                animatedSprite.Play(IdleAnimationName);
+            }
+            else
+            {
+                animatedSprite.Play(RunAnimationName);
+            }
+        }
+        else
+        {
+            GD.Print("Is NOT OnFloor");
+            animatedSprite.Play(JumpAnimationName);
+        }
+    }
+
+    private void UpdateMovement(float moveInput, double delta)
+    {
+        Vector2 velocity = Velocity;
+
+        if (!IsOnFloor())
+        {
+            velocity += GetGravity() * (float)delta;
+        }
+
+        if (Input.IsActionJustPressed(JumpKeyName) && IsOnFloor())
+        {
+            velocity.Y = JumpVelocity;
+        }
+
+        if (Mathf.IsZeroApprox(moveInput))
+        {
+            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+        }
+        else
+        {
+            velocity.X = moveInput * Speed;
+        }
+
+        Velocity = velocity;
+    }
 }
