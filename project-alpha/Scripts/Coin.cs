@@ -1,11 +1,15 @@
 using Godot;
-using System;
 
 public partial class Coin : Area2D
 {
-	private void OnBodyEntered(Node2D body)
-	{
-		GD.Print("+1");
-		QueueFree();
-	}
+    private void OnBodyEntered(Node2D body)
+    {
+        AddPoint();
+        QueueFree();
+    }
+
+    private void AddPoint()
+    {
+        GameManager.Instance.AddPoint();
+    }
 }

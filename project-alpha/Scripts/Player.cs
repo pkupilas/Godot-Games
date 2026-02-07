@@ -48,7 +48,6 @@ public partial class Player : CharacterBody2D
 
         if (IsOnFloor())
         {
-            GD.Print("IsOnFloor");
             if (Mathf.IsZeroApprox(moveInput))
             {
                 animatedSprite.Play(IdleAnimationName);
@@ -60,7 +59,6 @@ public partial class Player : CharacterBody2D
         }
         else
         {
-            GD.Print("Is NOT OnFloor");
             animatedSprite.Play(JumpAnimationName);
         }
     }

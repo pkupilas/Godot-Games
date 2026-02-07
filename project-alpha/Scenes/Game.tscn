@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b7fodh6s0mg3d" path="res://Scenes/Coin.tscn" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://cu41y6w3heclc" path="res://Scenes/Killzone.tscn" id="5_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ct4keri5n2l1b" path="res://Scenes/Enemy.tscn" id="6_7lihs"]
+[ext_resource type="FontFile" uid="uid://066codis54oj" path="res://Assets/fonts/PixelOperator8.ttf" id="7_fgofq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5yw3"]
 texture = ExtResource("2_gl6un")
@@ -251,3 +252,13 @@ autoplay = &"Move"
 
 [node name="Enemy1" parent="Enemies" unique_id=1945943900 instance=ExtResource("6_7lihs")]
 position = Vector2(57, 112)
+
+[node name="Texts" type="Node" parent="." unique_id=1565228530]
+
+[node name="Label" type="Label" parent="Texts" unique_id=722598434]
+offset_left = 22.0
+offset_top = 27.0
+offset_right = 139.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("7_fgofq")
+text = "Find a way out."

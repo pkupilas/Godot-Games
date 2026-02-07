@@ -15,6 +15,10 @@ run/main_scene="uid://dbmlyflthffob"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*uid://50qe5nigl652"
+
 [dotnet]
 
 project/assembly_name="ProjectAlpha"
