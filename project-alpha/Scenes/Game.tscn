@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://blsm77hu6atqq" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="Texture2D" uid="uid://ctmi8d0p4re4k" path="res://Assets/sprites/world_tileset.png" id="2_gl6un"]
+[ext_resource type="PackedScene" uid="uid://bvwo1w0g8wwkw" path="res://Scenes/UI.tscn" id="3_2irst"]
 [ext_resource type="PackedScene" uid="uid://caos2fu7q6n6h" path="res://Scenes/Platform.tscn" id="3_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://b7fodh6s0mg3d" path="res://Scenes/Coin.tscn" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://cu41y6w3heclc" path="res://Scenes/Killzone.tscn" id="5_b2bpf"]
@@ -221,6 +222,8 @@ zoom = Vector2(4, 4)
 limit_bottom = 150
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="GameplayPanel" parent="Player/Camera2D" unique_id=1276971594 instance=ExtResource("3_2irst")]
 
 [node name="Killzone" parent="." unique_id=1108064159 instance=ExtResource("5_b2bpf")]
 

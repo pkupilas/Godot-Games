@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bvwo1w0g8wwkw"]
+
+[ext_resource type="Script" uid="uid://qg6yu1d47dkx" path="res://Scripts/GameplayPanel.cs" id="1_w371h"]
+[ext_resource type="FontFile" uid="uid://wtg36f7wl7wx" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_nxvpl"]
+
+[node name="GameplayPanel" type="CanvasLayer" unique_id=1276971594 node_paths=PackedStringArray("scoreLabel")]
+script = ExtResource("1_w371h")
+scoreLabel = NodePath("HBoxContainer/ScoreValue")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=222871101]
+offset_right = 162.0
+offset_bottom = 54.0
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer" unique_id=217167704]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_nxvpl")
+theme_override_font_sizes/font_size = 32
+text = "Score:"
+
+[node name="ScoreValue" type="Label" parent="HBoxContainer" unique_id=2055468926]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_nxvpl")
+theme_override_font_sizes/font_size = 32
+text = "XX"
