@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cx4upfivmgglj"]
+
+[ext_resource type="PackedScene" uid="uid://0j7w121javtk" path="res://Models/brackeys_3d_game_assets/zombie/zombie.glb" id="1_4ru28"]
+[ext_resource type="AnimationLibrary" uid="uid://clrowkq3yg787" path="res://Models/brackeys_3d_game_assets/zombie/zombie_idle.glb" id="2_h15oy"]
+
+[node name="Zombie" type="Node" unique_id=956447242]
+
+[node name="zombie" parent="." unique_id=1013994429 instance=ExtResource("1_4ru28")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="zombie" unique_id=1778133177]
+libraries/zombie_idle = ExtResource("2_h15oy")
