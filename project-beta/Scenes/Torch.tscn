@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bq6hvf1cgv1f"]
+
+[ext_resource type="PackedScene" uid="uid://ytolp8rlfdmc" path="res://Models/brackeys_3d_game_assets/dungeon_assets/props/torch_mounted.glb" id="1_pqci0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lanxt"]
+size = Vector3(0.6, 1.1, 0.65000004)
+
+[node name="Torch" type="StaticBody3D" unique_id=1409083316]
+
+[node name="torch_mounted2" parent="." unique_id=787482431 instance=ExtResource("1_pqci0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1786788624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14999995, 0.32500002)
+shape = SubResource("BoxShape3D_lanxt")
